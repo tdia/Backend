@@ -1,0 +1,26 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: PUT, GET, POST");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+include_once "../connexion_base.php";
+$data = json_decode( file_get_contents('php://input'),true );
+$id= $data['id'];
+$nom =  $data['nom'];
+$prenom =  $data['prenom'];
+$email =  $data['email'];
+$ce =  $data['departement'];
+$cni =  $data['commune'];
+$tel1 =  $data['tel1'];
+$tel2 =  $data['tel2'];
+$con=new connexion_base();
+$con->connexionBDD();
+$con->set['nom']=$nom;
+$con->set['prenom']=$prenom;
+$con->set['email']=$email;
+$con->set['departement']=$departement;
+$con->set['commune']=$commune;
+$con->set['tel1']=$tel1;
+$con->set['tel2']=$tel2;
+$con->where['ind']=$id;
+$con->MyExecuteUpdate('animateur');
+$con=null;
